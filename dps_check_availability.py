@@ -9,6 +9,8 @@ email = 'xxxx@gmail.com'
 first_name = 'John'
 last_name = 'Doe'
 date_of_birth = 'MM/DD/YYYY'
+phone_number = '(817)-266-xxxx'
+send_sms = 'true'
 last4ssn = '0000'
 zipcode = '78750'
 type_id = 71 # service type id, 71 for new driver's license, 81 for renew license, 21 for road test.
@@ -87,6 +89,7 @@ def checkAvailability():
       'FirstName': first_name,
       'LastName': last_name,
       'LastFourDigitsSsn': last4ssn,
+      
     }
     res = requests.post(url='https://publicapi.txdpsscheduler.com/api/Booking', data=str(payload), headers=headers)
     appointments = res.json()
@@ -129,7 +132,7 @@ def checkAvailability():
               'SiteId': location['Id'],
               'ResponseId': responseId,
               'CardNumber': '',
-              'CellPhone': '',
+              'CellPhone': phone_number,
               'HomePhone': '',
             }
             try:
