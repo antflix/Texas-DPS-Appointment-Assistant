@@ -5,16 +5,16 @@ import time
 
 # replace with your user info bellow
 # and in command line, run `python dps_check_availability.py`
-email = 'xxxx@gmail.com'
-first_name = 'John'
-last_name = 'Doe'
+email = 'meoanthony88@gmail.com'
+first_name = 'Anthony'
+last_name = 'Meo'
 date_of_birth = 'MM/DD/YYYY'
-phone_number = '(817)-266-xxxx'
+phone_number = '(817) 266-3589'
 send_sms = 'true'
-last4ssn = '0000'
-zipcode = '78750'
-type_id = 71 # service type id, 71 for new driver's license, 81 for renew license, 21 for road test.
-distance = 10 # How far from the zipcode. unit in miles
+last4ssn = '5336'
+zipcode = '75022'
+type_id = 81 # service type id, 71 for new driver's license, 81 for renew license, 21 for road test.
+distance = 60 # How far from the zipcode. unit in miles
 
 check_interval = 60 # in seconds, check every 60 seconds.
 
@@ -134,6 +134,7 @@ def checkAvailability():
               'CardNumber': '',
               'CellPhone': phone_number,
               'HomePhone': '',
+              'SendSms': str(send_sms).lower()
             }
             try:
               res = requests.post(url='https://publicapi.txdpsscheduler.com/api/RescheduleBooking', data=str(payload), headers=headers)
@@ -144,7 +145,7 @@ def checkAvailability():
               print('Reschedule failed.', e.response.text)
           else:
             print("Hold slots failed.")
-
+              
   if not rescheduled:
     print("No ealier date found.")
 
